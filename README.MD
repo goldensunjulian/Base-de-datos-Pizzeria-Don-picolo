@@ -55,3 +55,5 @@ Para que los triggers calculen el precio de manera automática correctamente, se
 3. **Vincularlos en la tabla `receta`** agregando los ingredientes correspondientes a la pizza. 
 
 *Nota: Solo al hacer la inserción en la tabla `receta`, el sistema calculará y actualizará el precio de la pizza de manera automática en base a sus costos.*
+
+![Diagrama de la Base de Datos](foto.png)
