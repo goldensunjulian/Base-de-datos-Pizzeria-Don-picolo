@@ -43,19 +43,19 @@ CREATE TRIGGER CalcularPrecioPizza
 AFTER INSERT ON receta
 FOR EACH ROW
 BEGIN
-    DECLARE v_costo_total DECIMAL(10,2);
+    DECLARE costoTotal DECIMAL(10,2);
 --
-    SELECT SUM(i.precio_unitario * r.cantidad) INTO v_costo_total
+    SELECT SUM(i.precio_unitario * r.cantidad) INTO costoTotal
     FROM receta r
     JOIN ingrediente i ON r.ingrediente_fk = i.id
     WHERE r.pizza_fk = NEW.pizza_fk;
 --
     UPDATE pizza 
-    SET precio = v_costo_total * 1.50
+    SET precio = costoTotal * 1.50
     WHERE id = NEW.pizza_fk;
 END //
 
---- funcion para actualizar precio de pizza si ingredientes cambian de precio
+--- funcion para actualizar precio de pizza si ingredientes cambian de precio (pense en usar ley de signos pero teniendo ya otro ejemplo con while use while para no complicarme)
 CREATE TRIGGER actualizarPrecioPizzaIngrediente
 AFTER UPDATE ON ingrediente
 FOR EACH ROW
